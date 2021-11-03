@@ -23,15 +23,12 @@ test('result sort', () => {
 });
 
 test('check toHaveProperty', () => {
-  const hero = {
-    name: 'мечник',
-    health: 10,
-    level: 2,
-    attack: 80,
-    defence: 40,
-  };
+  const hero = {};
+  const entry = { id: 10 };
 
-  expect(hero).not.toEqual({ bb: 2, cc: 3 });
-  expect(hero).toHaveProperty('name');
-  expect(hero).not.toHaveProperty('getterProp');
+  Object.setPrototypeOf(hero, entry);
+
+  const result = orderByProperties(hero, ['name', 'level']);
+
+  expect(result).toEqual([]);
 });
